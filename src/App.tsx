@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Layout } from "./components";
+import { Error404, Home, Random, RandomMaker, Serialize } from "./pages";
+
+const App: FC = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/randoms">
+          <Route index element={<RandomMaker />} />
+          <Route path=":id" element={<Random />}/>
+        </Route>
+        <Route path="/serialize" element={<Serialize />} />
+      </Route>
+      <Route path="*" element={<Error404 />}/>
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
