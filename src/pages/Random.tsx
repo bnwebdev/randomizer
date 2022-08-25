@@ -3,6 +3,7 @@ import { Button, Col, ListGroup, Row } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import computeRandomDescription from "../computors";
 import { useDexie } from "../hooks";
+import { path } from "../utils";
 
 const LOADING_TIME = 800;
 
@@ -25,7 +26,7 @@ const Random: FC = () => {
 
   const remove = async () => {
     db?.randoms.delete(random.id as number);
-    navigate('/')
+    navigate(path('/'))
   };
 
   return (

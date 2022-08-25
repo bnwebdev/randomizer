@@ -1,0 +1,1 @@
+export const PREFIX_TO_RELATIVE_PATH = '/randomizer';

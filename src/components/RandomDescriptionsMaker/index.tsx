@@ -1,13 +1,11 @@
-import { FC, useEffect, useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { FC, useState } from "react";
+import { Button } from "react-bootstrap";
 import { Plus } from "react-bootstrap-icons";
-import { ChangeHandler, useForm } from "react-hook-form";
 import {
   BaseRandomDescription,
   RandomDescription,
   RandomDescriptionTypes,
 } from "../../types";
-import ErrorPrinter from "../ErrorPrinter";
 import { RandomDescriptionMaker, TypeChooserModal } from "./components";
 
 type Props = {
@@ -45,6 +43,7 @@ const RandomDescriptionsMaker: FC<Props> = ({
     <>
       {randomDescriptions.map((randomDescription, idx) => (
         <RandomDescriptionMaker
+          key={idx}
           randomDescription={randomDescription}
           onChange={(newDescription) =>
             onChange((descriptions) => {

@@ -62,6 +62,7 @@ const EnumRandomDescriptionMaker: FC<Props> = ({
       <Form.Group className="mb-3">
         {randomDescription.enum.map((value, idx) => (
           <Badge
+            key={idx}
             bg="primary"
             text="light"
             onClick={() => setIdxToChange(idx)}

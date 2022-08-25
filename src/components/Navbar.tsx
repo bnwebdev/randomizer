@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { path } from "../utils";
 import { Link } from "./UI";
 
 type LinkDescription = {
@@ -10,15 +11,15 @@ type LinkDescription = {
 
 const links: LinkDescription[] = [
   {
-    to: "/",
+    to: path("/"),
     label: "Home",
   },
   {
-    to: "/randoms",
+    to: path("/randoms"),
     label: "Maker",
   },
   {
-    to: "/serialize",
+    to: path("/serialize"),
     label: "Serializer",
   },
 ];

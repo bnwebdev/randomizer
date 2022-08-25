@@ -6,6 +6,7 @@ import { ErrorPrinter, RandomDescriptionsMaker } from "../components";
 import { Random } from "../database";
 import { useDexie } from "../hooks";
 import { RandomDescription } from "../types";
+import { path } from "../utils";
 
 const RandomMaker: FC = () => {
   const {
@@ -28,7 +29,7 @@ const RandomMaker: FC = () => {
         setDescriptions([]);
         reset();
         await db.randoms.add(item);
-        navigate('/')
+        navigate(path('/'))
       }
     },
     [itemToSave]
