@@ -83,7 +83,7 @@ const Random: FC = () => {
           </ModalBody>
           <ModalFooter>
             <Button variant="secondary" disabled={isRemoving} onClick={() => setShowRemoveModal(false)}>{cancelText}</Button>
-            <Button disabled={isRemoving} onClick={onRemove}>{okText}</Button>
+            <Button variant="primary" disabled={isRemoving} onClick={onRemove}>{okText}</Button>
           </ModalFooter>
         </Modal>
         <Button className="mx-1" variant="danger" onClick={() => setShowRemoveModal(true)}>

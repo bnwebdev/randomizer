@@ -59,9 +59,9 @@ const ValueChangerModal: FC<Props> = ({ show, close, save, remove, value }) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit">{okText}</Button>
-            <Button onClick={removeHandler}>{removeText}</Button>
-            <Button onClick={close}>{cancelText}</Button>
+            <Button variant="success" type="submit">{okText}</Button>
+            <Button variant="danger" onClick={removeHandler}>{removeText}</Button>
+            <Button variant="secondary" onClick={close}>{cancelText}</Button>
           </Modal.Footer>
         </Form>
       </Modal>

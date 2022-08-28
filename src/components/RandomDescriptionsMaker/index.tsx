@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Button } from "react-bootstrap";
-import { Plus } from "react-bootstrap-icons";
+import { PlusCircle } from "react-bootstrap-icons";
 import {
   BaseRandomDescription,
   RandomDescription,
@@ -61,8 +61,8 @@ const RandomDescriptionsMaker: FC<Props> = ({
           }
         />
       ))}
-      <Button onClick={handleOpen} className="rounded-circle p-1">
-        <Plus size="32" />
+      <Button onClick={handleOpen} className="p-2 rounded-circle" variant="outline-success">
+          <PlusCircle size="32" />
       </Button>
       <TypeChooserModal show={show} close={handleClose} create={handleCreate} />
     </>

@@ -49,8 +49,8 @@ const ValueAdderModal: FC<Props> = ({ show, close, save }) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="submit">{okText}</Button>
-            <Button onClick={close}>{cancelText}</Button>
+            <Button variant="success" type="submit">{okText}</Button>
+            <Button variant="secondary" onClick={close}>{cancelText}</Button>
           </Modal.Footer>
         </Form>
       </Modal>

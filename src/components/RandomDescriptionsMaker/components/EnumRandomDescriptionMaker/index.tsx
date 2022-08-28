@@ -76,7 +76,7 @@ const EnumRandomDescriptionMaker: FC<Props> = ({
           onClick={() => setShow(true)}
           bg="success"
           text="light"
-          className="btn"
+          className="btn p-1"
         >
           <PlusCircleDotted size={32} />
         </Badge>
