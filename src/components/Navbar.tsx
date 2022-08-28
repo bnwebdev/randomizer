@@ -25,7 +25,7 @@ const links: LinkDescription[] = [
 ];
 
 const NavbarComponent: FC = () => (
-  <Navbar bg="light" variant="light" className="mb-3">
+  <Navbar bg="dark" variant="dark" className="mb-3">
     <Container className="justify-content-around">
       <LinkContainer to="/">
         <Navbar.Brand>J.Randomizer</Navbar.Brand>
