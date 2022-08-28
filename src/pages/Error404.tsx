@@ -1,10 +1,19 @@
 import { FC } from "react";
 import { Row, Col, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "../hooks";
 import { path } from "../utils";
 
 const Error404: FC = () => {
   const navigate = useNavigate();
+
+  const t = useTranslation()
+
+  const errorName = t('404ErrorPage.error.name')
+  const errorMessage = t('404ErrorPage.error.message')
+  const prevPage = t('404ErrorPage.previousPageLink')
+  const homePage = t('404ErrorPage.homePageLink')
+
   return (
     <div
       className="d-flex flex-column justify-content-center"
@@ -12,14 +21,14 @@ const Error404: FC = () => {
     >
       <Row>
         <Col sm={{ offset: 3, span: 6 }}>
-          <h1 className="text-danger">Error 404</h1>
-          <h2>Page isn't found</h2>
+          <h1 className="text-danger">{errorName}</h1>
+          <h2>{errorMessage}</h2>
           <Nav>
             <Nav.Link onClick={() => navigate(-1)}>
-              Previous Page
+              {prevPage}
             </Nav.Link>
             <Nav.Link className="nav-link" onClick={() => navigate(path("/"))}>
-              HomePage
+              {homePage}
             </Nav.Link>
           </Nav>
         </Col>

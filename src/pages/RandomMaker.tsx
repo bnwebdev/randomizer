@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorPrinter, RandomDescriptionsMaker } from "../components";
 import { Random } from "../database";
-import { useDexie } from "../hooks";
+import { useDexie, useTranslation } from "../hooks";
 import { RandomDescription } from "../types";
 import { path } from "../utils";
 
@@ -41,6 +41,12 @@ const RandomMaker: FC = () => {
 
   const ref = useRef<HTMLFormElement>(null);
 
+  const t = useTranslation()
+
+  const nameLabel = t('randomsMakerPage.form.name')
+  const okText = t('randomsMakerPage.form.okText')
+  const tipsBeforeCreate = t('randomsMakerPage.form.tipsBeforeCreate')
+
   return (
     <>
       <ErrorPrinter error={errors.name?.message} />
@@ -48,7 +54,7 @@ const RandomMaker: FC = () => {
         <Form.Group className="mb-3">
           <Row>
             <Col sm={4}>
-              <Form.Label>Randomizer Name</Form.Label>
+              <Form.Label>{nameLabel}</Form.Label>
             </Col>
             <Col sm={8}>
               <Form.Control
@@ -59,10 +65,10 @@ const RandomMaker: FC = () => {
           </Row>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Button type="submit">Create!</Button>
+          <Button type="submit">{okText}</Button>
         </Form.Group>
       </Form>
-      <p>Before create make your random fields below</p>
+      { descriptions.length ? null : <p>{tipsBeforeCreate}</p>}
       <RandomDescriptionsMaker
         descriptions={descriptions}
         onChange={setDescriptions}

@@ -1,0 +1,69 @@
+{
+    "homePage": {
+        "nav": "Home",
+        "loadingData": "Loading data...",
+        "nothing": "Nothing!"
+    },
+    "randomsMakerPage": {
+        "nav": "Maker",
+        "subpage": {
+            "concreteRandom": {
+                "updateValues": "Get new randoms!",
+                "remove": "Remove",
+                "removeModal": {
+                    "question": "You would like remove this random. Are you sure?",
+                    "title": "Remove {{name}}",
+                    "okText": "Yes",
+                    "cancelText": "No"
+                }
+            }
+        },
+        "form": {
+            "name": "Randomizer Name",
+            "okText": "Create",
+            "tipsBeforeCreate": "Before create make your random fields below"
+        },
+        "valueDescriptionsMaker": {
+            "adderModal": {
+                "title": "Write value to enum",
+                "valueLabel": "Your value",
+                "okText": "Save",
+                "cancelText": "Cancel"
+            },
+            "changerModal": {
+                "title": "Change or remove the value",
+                "valueLabel": "Your value",
+                "okText": "Save",
+                "cancelText": "Cancel",
+                "removeText": "Remove"
+            }
+        },
+        "numberDescriptionsMaker": {
+            "minLabel": "Min",
+            "maxLabel": "Max"
+        },
+        "typeChooserModal": {
+            "title": "Make up name and choose type",
+            "nameLabel": "Your label",
+            "typeLabel": "Choose Type",
+            "okText": "Create",
+            "cancelText": "Cancel"
+        }
+    },
+    "serializePage": {
+        "nav": "Serializer"
+    },
+    "RandomDescriptionTypes": {
+        "enum": "Enum",
+        "number": "Number"
+    },
+    "404ErrorPage": {
+        "error": {
+            "name": "Error 404",
+            "message": "Page isn't found"
+        },
+        "previousPageLink": "Previous Page",
+        "homePageLink": "Home Page"
+    },
+    "notImplemented": "Not implemented"
+}
