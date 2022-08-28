@@ -1,0 +1,69 @@
+{
+    "homePage": {
+        "nav": "Головна",
+        "loadingData": "Грузимо дані та вас своїм нудним текстом...",
+        "nothing": "Нічого ще не створено!"
+    },
+    "randomsMakerPage": {
+        "nav": "Створювач",
+        "subpage": {
+            "concreteRandom": {
+                "updateValues": "Туфта - чаруй знов!",
+                "remove": "Видалити",
+                "removeModal": {
+                    "question": "Ви бажаєте видалити цей рандомізатор. Ви впевнені?",
+                    "title": "Видалити {{name}}",
+                    "okText": "Так",
+                    "cancelText": "Ні"
+                }
+            }
+        },
+        "form": {
+            "name": "Ім'я рандомізатору",
+            "okText": "Створити",
+            "tipsBeforeCreate": "Не забудьте додати свої генератори рандомних значень нижче"
+        },
+        "valueDescriptionsMaker": {
+            "adderModal": {
+                "title": "Запишіть значення у список",
+                "valueLabel": "Ваше значення",
+                "okText": "Додати",
+                "cancelText": "Передумати"
+            },
+            "changerModal": {
+                "title": "Змінити чи видалити значення",
+                "valueLabel": "Ваше значення",
+                "okText": "Додати",
+                "cancelText": "Передумати",
+                "removeText": "Видалити"
+            }
+        },
+        "numberDescriptionsMaker": {
+            "minLabel": "Мінімум",
+            "maxLabel": "Максимум"
+        },
+        "typeChooserModal": {
+            "title": "Придумайте назву та оберіть тип",
+            "nameLabel": "Назва для поля",
+            "typeLabel": "Оберіть тип",
+            "okText": "Створити",
+            "cancelText": "Відміна"
+        }
+    },
+    "serializePage": {
+        "nav": "Серіалізація"
+    },
+    "RandomDescriptionTypes": {
+        "enum": "Список",
+        "number": "Числовой"
+    },
+    "404ErrorPage": {
+        "error": {
+            "name": "Помилка 404",
+            "message": "Сторінка, яку ви шукаєте, не знайдена"
+        },
+        "previousPageLink": "На попередню сторінку",
+        "homePageLink": "На головну"
+    },
+    "notImplemented": "Ми дуже хотіли, щоб ви дізналися про цю можливість! Але це ще у розробці - чекайте)"
+}
