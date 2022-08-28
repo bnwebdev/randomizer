@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Button, Col, ListGroup, Row } from "react-bootstrap";
+import { Button, Col, ListGroup, Row, Spinner } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import computeRandomDescription from "../computors";
 import { useDexie } from "../hooks";
@@ -47,7 +47,7 @@ const Random: FC = () => {
               </Col>
               <Col sm={6}>
                 {isLoading ? (
-                  <h2>Wait magic random...</h2>
+                  <Spinner animation="border" variant="primary" />
                 ) : (
                   <h2>{computeRandomDescription(randomDescription)}</h2>
                 )}
