@@ -1,14 +1,13 @@
 import { FC } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 import { Layout } from "./components";
 import { Error404, Home, Random, RandomMaker, Serialize } from "./pages";
-import { path } from "./utils";
 
 const App: FC = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
-      <Route path={path('/')} element={<Layout />}>
+      <Route path={'/'} element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="randoms">
           <Route index element={<RandomMaker />} />
@@ -18,7 +17,7 @@ const App: FC = () => (
       </Route>
       <Route path="*" element={<Error404 />}/>
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default App;

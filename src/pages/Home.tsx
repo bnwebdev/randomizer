@@ -2,7 +2,6 @@ import { FC, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDexie, useTranslation } from "../hooks";
-import { path } from "../utils";
 
 const Home: FC = () => {
   const limit = 10;
@@ -24,7 +23,7 @@ const Home: FC = () => {
   return (
     <ListGroup>
       {randoms.map(({ name, id }) => (
-        <LinkContainer key={id} to={path(`/randoms/${id}`)}>
+        <LinkContainer key={id} to={`/randoms/${id}`}>
           <ListGroup.Item action className="d-flex justify-content-center">
             {name}
           </ListGroup.Item>

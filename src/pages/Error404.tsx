@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Row, Col, Nav } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "../hooks";
-import { path } from "../utils";
 
 const Error404: FC = () => {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ const Error404: FC = () => {
             <Nav.Link onClick={() => navigate(-1)}>
               {prevPage}
             </Nav.Link>
-            <Nav.Link className="nav-link" onClick={() => navigate(path("/"))}>
+            <Nav.Link className="nav-link" onClick={() => navigate("/")}>
               {homePage}
             </Nav.Link>
           </Nav>
