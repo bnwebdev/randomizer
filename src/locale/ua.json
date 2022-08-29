@@ -33,7 +33,7 @@
             "changerModal": {
                 "title": "Змінити чи видалити значення",
                 "valueLabel": "Ваше значення",
-                "okText": "Додати",
+                "okText": "Змінити",
                 "cancelText": "Передумати",
                 "removeText": "Видалити"
             }

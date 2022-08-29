@@ -1,5 +1,5 @@
 import { FC, useRef, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorPrinter, RandomDescriptionsMaker } from "../components";
@@ -52,20 +52,11 @@ const RandomMaker: FC = () => {
       <ErrorPrinter error={errors.name?.message} />
       <Form ref={ref} onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3">
-          <Row>
-            <Col sm={4}>
               <Form.Label>{nameLabel}</Form.Label>
-            </Col>
-            <Col sm={8}>
               <Form.Control
                 type="text"
                 {...register("name", { required: true })}
               />
-            </Col>
-          </Row>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Button type="submit">{okText}</Button>
         </Form.Group>
       </Form>
       { descriptions.length ? null : <p>{tipsBeforeCreate}</p>}
@@ -73,6 +64,8 @@ const RandomMaker: FC = () => {
         descriptions={descriptions}
         onChange={setDescriptions}
       />
+      <br />
+      <Button className="mt-2" onClick={() => ref.current?.requestSubmit()}>{okText}</Button>
     </>
   );
 };

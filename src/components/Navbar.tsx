@@ -44,7 +44,7 @@ const NavbarComponent: FC = () => {
         ))}
       </Nav>
       <DropdownButton title={language}>
-        {Object.values(SupportedLocale).map(key => <Dropdown.Item onClick={() => setLanguage(key)}>{key}</Dropdown.Item>)}
+        {Object.values(SupportedLocale).map(key => <Dropdown.Item key={key} onClick={() => setLanguage(key)}>{key}</Dropdown.Item>)}
       </DropdownButton>
     </Container>
   </Navbar>

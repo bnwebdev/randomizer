@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { Button, Col, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row, Spinner } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
@@ -28,9 +28,30 @@ const Random: FC = () => {
     }
   }, [isLoading]);
 
+  const randomNodes = useMemo(
+    () => random?.randomDescriptions.map((randomDescription) => (
+      <ListGroup.Item key={randomDescription.label}>
+        <Row>
+          <Col sm={6}>
+            <h2>{randomDescription.label}</h2>
+          </Col>
+          <Col sm={6}>
+            {isLoading ? (
+              <Spinner animation="border" variant="primary" />
+              ) : (
+                <h2>{computeRandomDescription(randomDescription)}</h2>
+                )}
+          </Col>
+        </Row>
+      </ListGroup.Item>
+    )), 
+    [random, isLoading]
+  )
+
   if (!random) {
     return <h1>Loading data...</h1>;
   }
+
 
   const removeItem = async () => {
     db?.randoms.delete(random.id as number);
@@ -83,7 +104,7 @@ const Random: FC = () => {
           </ModalBody>
           <ModalFooter>
             <Button variant="secondary" disabled={isRemoving} onClick={() => setShowRemoveModal(false)}>{cancelText}</Button>
-            <Button disabled={isRemoving} onClick={onRemove}>{okText}</Button>
+            <Button variant="primary" disabled={isRemoving} onClick={onRemove}>{okText}</Button>
           </ModalFooter>
         </Modal>
         <Button className="mx-1" variant="danger" onClick={() => setShowRemoveModal(true)}>
@@ -91,22 +112,7 @@ const Random: FC = () => {
         </Button>
       </div>
       <ListGroup>
-        {random.randomDescriptions.map((randomDescription) => (
-          <ListGroup.Item key={randomDescription.label}>
-            <Row>
-              <Col sm={6}>
-                <h2>{randomDescription.label}</h2>
-              </Col>
-              <Col sm={6}>
-                {isLoading ? (
-                  <Spinner animation="border" variant="primary" />
-                ) : (
-                  <h2>{computeRandomDescription(randomDescription)}</h2>
-                )}
-              </Col>
-            </Row>
-          </ListGroup.Item>
-        ))}
+        {randomNodes}
       </ListGroup>
     </>
   );
