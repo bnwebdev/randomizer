@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/randomizer/static/css/main.84487ea8.css",
-    "main.js": "/randomizer/static/js/main.4a8eafb8.js",
+    "main.js": "/randomizer/static/js/main.875f24c7.js",
     "index.html": "/randomizer/index.html",
     "main.84487ea8.css.map": "/randomizer/static/css/main.84487ea8.css.map",
-    "main.4a8eafb8.js.map": "/randomizer/static/js/main.4a8eafb8.js.map"
+    "main.875f24c7.js.map": "/randomizer/static/js/main.875f24c7.js.map"
   },
   "entrypoints": [
     "static/css/main.84487ea8.css",
-    "static/js/main.4a8eafb8.js"
+    "static/js/main.875f24c7.js"
   ]
 }
