@@ -6,7 +6,6 @@ import { LinkContainer } from "react-router-bootstrap";
 import { SupportedLocale } from "../constants";
 import { LocaleContext } from "../context";
 import { useTranslation } from "../hooks";
-import { path } from "../utils";
 import { Link } from "./UI";
 
 type LinkDescription = {
@@ -16,15 +15,15 @@ type LinkDescription = {
 
 const links: (t: TFunction) => LinkDescription[] = (t) => [
   {
-    to: path("/"),
+    to: "/",
     label: t("homePage.nav"),
   },
   {
-    to: path("/randoms"),
+    to: "/randoms",
     label: t('randomsMakerPage.nav'),
   },
   {
-    to: path("/serialize"),
+    to: "/serialize",
     label: t('serializePage.nav'),
   },
 ];
@@ -35,7 +34,7 @@ const NavbarComponent: FC = () => {
 
   return <Navbar bg="dark" variant="dark" className="mb-3">
     <Container className="justify-content-around">
-      <LinkContainer to={path('/')}>
+      <LinkContainer to={'/'}>
         <Navbar.Brand>J.Randomizer</Navbar.Brand>
       </LinkContainer>
       <Nav>

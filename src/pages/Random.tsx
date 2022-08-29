@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
 import computeRandomDescription from "../computors";
 import { useDexie, useTranslation } from "../hooks";
-import { path, sleep } from "../utils";
+import { sleep } from "../utils";
 
 const LOADING_TIME = 800;
 
@@ -72,7 +72,7 @@ const Random: FC = () => {
       await removeItem()
       
       setShowRemoveModal(false)
-      navigate(path('/'))
+      navigate('/')
     } catch (error) {
       setRemovingError((error as Error).message);
     } finally {
