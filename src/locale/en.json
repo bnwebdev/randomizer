@@ -23,6 +23,12 @@
             "okText": "Create",
             "tipsBeforeCreate": "Before create make your random fields below"
         },
+        "removeDescriptionForm": {
+            "title": "Remove {{name}}",
+            "question": "You would like remove this random description. Are you sure?",
+            "cancelText": "No",
+            "okText": "Yes"
+        },
         "valueDescriptionsMaker": {
             "adderModal": {
                 "title": "Write value to enum",

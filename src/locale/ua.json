@@ -23,6 +23,12 @@
             "okText": "Створити",
             "tipsBeforeCreate": "Не забудьте додати свої генератори рандомних значень нижче"
         },
+        "removeDescriptionForm": {
+            "title": "Видалити {{name}}",
+            "question": "Ви бажаєте видалити цей генератор рандому. Ви впевнені?",
+            "cancelText": "Ні",
+            "okText": "Так"
+        },
         "valueDescriptionsMaker": {
             "adderModal": {
                 "title": "Запишіть значення у список",
