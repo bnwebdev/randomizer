@@ -1,0 +1,7 @@
+.white-link {
+    color: var(--white-text);
+}
+
+.white-link.active {
+    color: var(--dark-green-text) !important;
+}
