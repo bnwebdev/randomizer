@@ -1,0 +1,6 @@
+.navbar-green,
+.bg-green {
+    background-color: var(--green-bg);
+    color: var(--light-white-text);
+    font-size: 1.5rem;
+}

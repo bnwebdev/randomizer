@@ -1,0 +1,16 @@
+:root {
+    --green-bg: #0a5;
+    --dark-green-text: #040;
+    --grey-text: #888;
+    --white-text: #fff;
+    --light-green-bg: #afa;
+    --primary-text: #000;
+    --primary-bg: #fff;
+    --primary-border: #000;
+    --accent-text: #fff;
+    --accent-bg: #000;
+    --accent-border: #ccc;
+    --secondary-text: #000;
+    --secondary-border: #ccc;
+    --secondary-bg: #0ff;
+}
