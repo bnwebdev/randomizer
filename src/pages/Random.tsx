@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { Button, Col, ListGroup, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle, Row, Spinner } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
-import computeRandomDescription from "../computors";
+import { computeRandomDescription } from "../computors";
 import { useDexie, useTranslation } from "../hooks";
 import { sleep } from "../utils";
 

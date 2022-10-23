@@ -57,7 +57,18 @@
         }
     },
     "serializePage": {
-        "nav": "Serializer"
+        "nav": "Serializer",
+        "format": {
+            "json": "JSON"
+        },
+        "formatLabel": "Format",
+        "upload": {
+            "description": "You can upload new random descriptions from file",
+            "fileLabel": "Upload file",
+            "successLog": "Uploading file with name \"{{name}}\" has been completed",
+            "errorLog": "Uploading file with name \"{{name}}\" was stopped by error",
+            "seeResult": "See result"
+        }
     },
     "RandomDescriptionTypes": {
         "enum": "Enum",

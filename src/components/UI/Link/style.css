@@ -5,3 +5,10 @@
 .white-link.active {
     color: var(--dark-green-text) !important;
 }
+
+.green-link {
+    color: var(--dark-green-text) !important;
+}
+.green-link:hover {
+    color: var(--grey-text) !important;
+}
