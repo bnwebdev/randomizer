@@ -47,7 +47,8 @@ const Serialize: FC = () => {
             setFile(void 0)
         }
 
-    }, [format, pushLog, t])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [format, pushLog, t, file])
 
     const [uploadFile, { error, loading, called }] = useLazyDexie(uploadFileQuery)
 
