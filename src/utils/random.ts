@@ -6,5 +6,5 @@ export const random = (_min?: number, _max: number = 0) => {
   const min = Math.min(_min, _max);
   const max = Math.max(_min, _max);
 
-  return min + Math.floor(Math.random() * (max + 1));
+  return min + Math.floor(Math.random() * (max - min + 1));
 };
