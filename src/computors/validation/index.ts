@@ -1,20 +1,29 @@
 import Joi from 'joi'
-import { EnumRandomDescription, NumberRandomDescription, RandomDescriptionTypes } from '../../types'
+import { EnumRandomDescription, KeyValuesRandomDescription, NumberRandomDescription, RandomDescriptionTypes } from '../../types'
 
 export const numberDescriptionValidationSchema = Joi.object<NumberRandomDescription, true>({
-  type: Joi.string<RandomDescriptionTypes.NUMBER>().allow(RandomDescriptionTypes.NUMBER).only(),
-  min: Joi.number(),
-  max: Joi.number(),
-  label: Joi.string()
+  type: Joi.string<RandomDescriptionTypes.NUMBER>().allow(RandomDescriptionTypes.NUMBER).only().required(),
+  min: Joi.number().required(),
+  max: Joi.number().required(),
+  label: Joi.string().required()
 })
 
 export const enumeralDescriptionValidationSchema = Joi.object<EnumRandomDescription, true>({
-  type: Joi.string<RandomDescriptionTypes.ENUMERAL>().allow(RandomDescriptionTypes.ENUMERAL).only(),
-  label: Joi.string(),
-  enum: Joi.array().items(Joi.string())
+  type: Joi.string<RandomDescriptionTypes.ENUMERAL>().allow(RandomDescriptionTypes.ENUMERAL).only().required(),
+  label: Joi.string().required(),
+  enum: Joi.array().items(Joi.string()).required()
+})
+
+export const keyValuesDescriptionValidationSchema = Joi.object<KeyValuesRandomDescription, true>({
+  type: Joi.string<RandomDescriptionTypes.KEY_VALUES>().allow(RandomDescriptionTypes.KEY_VALUES).only().required(),
+  label: Joi.string().required(),
+  keys: Joi.array().items(Joi.string()).required(),
+  values: Joi.array().items(Joi.string()).required(),
+  repeated: Joi.boolean().required()
 })
 
 export const randomDescriptionValidationSchema = Joi.alternatives(
   numberDescriptionValidationSchema,
-  enumeralDescriptionValidationSchema
+  enumeralDescriptionValidationSchema,
+  keyValuesDescriptionValidationSchema,
 )

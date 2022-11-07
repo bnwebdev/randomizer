@@ -72,7 +72,8 @@
     },
     "RandomDescriptionTypes": {
         "enum": "Список",
-        "number": "Числовой"
+        "number": "Числовой",
+        "key-values": "Ключ-Значення"
     },
     "404ErrorPage": {
         "error": {

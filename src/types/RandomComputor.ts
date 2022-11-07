@@ -1,5 +1,6 @@
 import {
   EnumRandomDescription,
+  KeyValuesRandomDescription,
   NumberRandomDescription,
   RandomDescription,
 } from "./RandomDescription";
@@ -8,4 +9,6 @@ export type NumberRandomComputor = (randomDescription: NumberRandomDescription) 
 
 export type EnumRandomComputor = (randomDescription: EnumRandomDescription) => string;
 
-export type RandomComputor = (randomDescription: RandomDescription) => string;
+export type KeyValuesRandomComputor = (randomDescription: KeyValuesRandomDescription) => string[]
+
+export type RandomComputor = (randomDescription: RandomDescription) => string | string[];

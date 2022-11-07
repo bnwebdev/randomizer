@@ -61,10 +61,7 @@ const TypeChooserModal: FC<Props> = ({ show, close, create }) => {
           <Form.Group className="mb-3">
             <Form.Label>{typeLabel}</Form.Label>
             <Form.Select {...register("type", { required: true })}>
-              {[
-                RandomDescriptionTypes.ENUMERAL,
-                RandomDescriptionTypes.NUMBER,
-              ].map((key) => (
+              {Object.values(RandomDescriptionTypes).map((key) => (
                 <option value={key} key={key}>
                   {t(`RandomDescriptionTypes.${key}`) as string}
                 </option>

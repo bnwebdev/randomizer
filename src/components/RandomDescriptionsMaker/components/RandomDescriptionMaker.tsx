@@ -7,6 +7,7 @@ import { RandomDescription, RandomDescriptionTypes } from "../../../types";
 import ErrorPrinter from "../../ErrorPrinter";
 
 import EnumRandomDescriptionMaker from "./EnumRandomDescriptionMaker";
+import KeyValuesDescriptionMaker from "./KeyValuesDescriptionMaker";
 import NumberRandomDescriptionMaker from "./NumberRandomDescriptionMaker";
 
 type Props = {
@@ -18,6 +19,7 @@ type Props = {
 const randomDescriptionMakers: Record<RandomDescriptionTypes, FC<Props>> = {
   [RandomDescriptionTypes.ENUMERAL]: EnumRandomDescriptionMaker as FC<Props>,
   [RandomDescriptionTypes.NUMBER]: NumberRandomDescriptionMaker as FC<Props>,
+  [RandomDescriptionTypes.KEY_VALUES]: KeyValuesDescriptionMaker as FC<Props>
 };
 
 const RandomDescriptionMaker: FC<Props> = (props) => {

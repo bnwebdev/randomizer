@@ -72,7 +72,8 @@
     },
     "RandomDescriptionTypes": {
         "enum": "Enum",
-        "number": "Number"
+        "number": "Number",
+        "key-values": "Key-Values"
     },
     "404ErrorPage": {
         "error": {

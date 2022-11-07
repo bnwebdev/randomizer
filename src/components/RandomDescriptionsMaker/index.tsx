@@ -33,6 +33,9 @@ const RandomDescriptionsMaker: FC<Props> = ({
       case RandomDescriptionTypes.NUMBER:
         randomDescription = { type, label, min: 0, max: 100 };
         break;
+      case RandomDescriptionTypes.KEY_VALUES:
+        randomDescription = { type, label, keys: [], values: [], repeated: true}
+        break;
       default:
         throw new Error(`Undefined type`);
     }
