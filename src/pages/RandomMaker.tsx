@@ -1,70 +1,136 @@
-import { FC, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { ErrorPrinter, RandomDescriptionsMaker } from "../components";
+import { ErrorPrinter } from "../components";
+import { randomDescriptionValidationSchema } from "../validation";
+import { ObjectInput } from "../core/Object/components/input";
 import { Random } from "../database";
 import { useDexie, useTranslation } from "../hooks";
-import { RandomDescription } from "../types";
+import {
+  EnumRandomDescription,
+  NumberRandomDescription,
+  ObjectRandomDescription,
+  RandomDescriptionTypes,
+} from "../types";
+
+type RD =
+  | Omit<ObjectRandomDescription, "label">
+  | Omit<EnumRandomDescription, "label">
+  | Omit<NumberRandomDescription, "label">;
+
+const prepareRandomDescription = (
+  root: { type: RandomDescriptionTypes } & Record<string, any>
+): RD => {
+  if (root.type === RandomDescriptionTypes.NUMBER) {
+    return {
+      min: root.min,
+      max: root.max,
+      type: root.type,
+    };
+  }
+
+  if (root.type === RandomDescriptionTypes.ENUMERAL) {
+    return {
+      type: root.type,
+      enum: root.enums.map(({ value }: { value: string }) => value),
+    };
+  }
+
+  return {
+    type: root.type,
+    object: Object.fromEntries(
+      root.object.map(
+        ({
+          name,
+          type,
+          props,
+        }: {
+          name: string;
+          props: any;
+          type: RandomDescriptionTypes;
+        }) => [name, prepareRandomDescription({ ...props, type })]
+      )
+    ),
+  };
+};
 
 const RandomMaker: FC = () => {
+  const navigate = useNavigate();
+
+  const [itemToSave, setItemToSave] = useState<Random | null>(null);
+  const [validationError, setValidationError] = useState<string>();
+
+  const methods = useForm<{ root: any; name: string }>({
+    defaultValues: {
+      root: { type: RandomDescriptionTypes.OBJECT, object: [] },
+    },
+  });
+
   const {
     register,
-    handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm<Random>();
-  const navigate = useNavigate()
+    watch,
+  } = methods;
 
-  const [descriptions, setDescriptions] = useState<RandomDescription[]>([]);
-
-  let [itemToSave, setItemToSave] = useState<Random | null>(null);
+  useEffect(() => {
+    const { unsubscribe } = watch(() => {
+      setValidationError(undefined);
+    });
+    return () => unsubscribe();
+  }, [watch]);
 
   useDexie(
     async (db) => {
       if (itemToSave) {
         const item = itemToSave;
         setItemToSave(null);
-        setDescriptions([]);
-        reset();
+
         await db.randoms.add(item);
-        navigate('/')
+
+        navigate("/");
       }
     },
     [itemToSave]
   );
 
-  const onSubmit = ({ name }: Random) => {
-    setItemToSave({ name, randomDescriptions: descriptions });
+  const onSubmit = async ({ name, root }: any) => {
+    try {
+      setValidationError(undefined);
+      const unlabeledRandomDescription = prepareRandomDescription(root);
+      const randomDescription = { ...unlabeledRandomDescription };
+
+      await randomDescriptionValidationSchema.validateAsync(randomDescription);
+
+      setItemToSave({ name, randomDescriptions: [randomDescription] });
+    } catch (err) {
+      setValidationError(t("randomsMakerPage.errors.shouldFillAllFields"));
+      console.error(err);
+    }
   };
 
-  const ref = useRef<HTMLFormElement>(null);
+  const t = useTranslation();
 
-  const t = useTranslation()
-
-  const nameLabel = t('randomsMakerPage.form.name')
-  const okText = t('randomsMakerPage.form.okText')
-  const tipsBeforeCreate = t('randomsMakerPage.form.tipsBeforeCreate')
+  const nameLabel = t("randomsMakerPage.form.name");
+  const okText = t("randomsMakerPage.form.okText");
 
   return (
     <>
       <ErrorPrinter error={errors.name?.message} />
-      <Form ref={ref} onSubmit={handleSubmit(onSubmit)}>
+      <ErrorPrinter error={validationError} />
+      <FormProvider {...methods}>
         <Form.Group className="mb-3">
-              <Form.Label>{nameLabel}</Form.Label>
-              <Form.Control
-                type="text"
-                {...register("name", { required: true })}
-              />
+          <Form.Label>{nameLabel}</Form.Label>
+          <Form.Control type="text" {...register("name", { required: true })} />
         </Form.Group>
-      </Form>
-      { descriptions.length ? null : <p>{tipsBeforeCreate}</p>}
-      <RandomDescriptionsMaker
-        descriptions={descriptions}
-        onChange={setDescriptions}
-      />
-      <br />
-      <Button className="mt-2" onClick={() => ref.current?.requestSubmit()}>{okText}</Button>
+        <Form onSubmit={methods.handleSubmit(onSubmit)}>
+          <ObjectInput forUseFormName="root" />
+          <br />
+          <Button className="mt-2" type="submit">
+            {okText}
+          </Button>
+        </Form>
+      </FormProvider>
     </>
   );
 };
