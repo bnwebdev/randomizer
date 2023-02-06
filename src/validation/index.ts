@@ -26,7 +26,7 @@ export const enumeralDescriptionValidationSchema = Joi.object<
     .allow(RandomDescriptionTypes.ENUMERAL)
     .only()
     .required(),
-  enum: Joi.array().items(Joi.string()).required(),
+  enum: Joi.array().min(1).items(Joi.string()).required(),
 });
 
 const objectDescriptionValidationSchema = Joi.object<
