@@ -1,86 +1,101 @@
 {
-    "homePage": {
-        "nav": "Home",
-        "loadingData": "Loading data...",
-        "nothing": "Nothing!"
+  "common": {
+    "nothingYet": "Nothing...",
+    "delete": "Delete"
+  },
+  "homePage": {
+    "nav": "Home",
+    "loadingData": "Loading data...",
+    "nothing": "Nothing!"
+  },
+  "randomsMakerPage": {
+    "nav": "Maker",
+    "errors": {
+      "shouldFillAllFields": "You must fill all fields"
     },
-    "randomsMakerPage": {
-        "nav": "Maker",
-        "subpage": {
-            "concreteRandom": {
-                "updateValues": "Get new randoms!",
-                "remove": "Remove",
-                "removeModal": {
-                    "question": "You would like remove this random. Are you sure?",
-                    "title": "Remove {{name}}",
-                    "okText": "Yes",
-                    "cancelText": "No"
-                }
-            }
-        },
-        "form": {
-            "name": "Randomizer Name",
-            "okText": "Create",
-            "tipsBeforeCreate": "Before create make your random fields below"
-        },
-        "removeDescriptionForm": {
-            "title": "Remove {{name}}",
-            "question": "You would like remove this random description. Are you sure?",
-            "cancelText": "No",
-            "okText": "Yes"
-        },
-        "valueDescriptionsMaker": {
-            "adderModal": {
-                "title": "Write value to enum",
-                "valueLabel": "Your value",
-                "okText": "Save",
-                "cancelText": "Cancel"
-            },
-            "changerModal": {
-                "title": "Change or remove the value",
-                "valueLabel": "Your value",
-                "okText": "Save",
-                "cancelText": "Cancel",
-                "removeText": "Remove"
-            }
-        },
-        "numberDescriptionsMaker": {
-            "minLabel": "Min",
-            "maxLabel": "Max"
-        },
-        "typeChooserModal": {
-            "title": "Make up name and choose type",
-            "nameLabel": "Your label",
-            "typeLabel": "Choose Type",
-            "okText": "Create",
-            "cancelText": "Cancel"
+    "object": {
+      "addItem": "Add item to named list"
+    },
+    "enum": {
+      "addItem": "Add item to list",
+      "newItem": "Value of item"
+    },
+    "subpage": {
+      "concreteRandom": {
+        "updateValues": "Get new randoms!",
+        "remove": "Remove",
+        "removeModal": {
+          "question": "You would like remove this random. Are you sure?",
+          "title": "Remove {{name}}",
+          "okText": "Yes",
+          "cancelText": "No"
         }
+      }
     },
-    "serializePage": {
-        "nav": "Serializer",
-        "format": {
-            "json": "JSON"
-        },
-        "formatLabel": "Format",
-        "upload": {
-            "description": "You can upload new random descriptions from file",
-            "fileLabel": "Upload file",
-            "successLog": "Uploading file with name \"{{name}}\" has been completed",
-            "errorLog": "Uploading file with name \"{{name}}\" was stopped by error",
-            "seeResult": "See result"
-        }
+    "form": {
+      "name": "Randomizer Name",
+      "okText": "Create",
+      "tipsBeforeCreate": "Before create make your random fields below"
     },
-    "RandomDescriptionTypes": {
-        "enum": "Enum",
-        "number": "Number"
+    "removeDescriptionForm": {
+      "title": "Remove {{name}}",
+      "question": "You would like remove this random description. Are you sure?",
+      "cancelText": "No",
+      "okText": "Yes"
     },
-    "404ErrorPage": {
-        "error": {
-            "name": "Error 404",
-            "message": "Page isn't found"
-        },
-        "previousPageLink": "Previous Page",
-        "homePageLink": "Home Page"
+    "valueDescriptionsMaker": {
+      "adderModal": {
+        "title": "Write value to enum",
+        "valueLabel": "Your value",
+        "okText": "Save",
+        "cancelText": "Cancel"
+      },
+      "changerModal": {
+        "title": "Change or remove the value",
+        "valueLabel": "Your value",
+        "okText": "Save",
+        "cancelText": "Cancel",
+        "removeText": "Remove"
+      }
     },
-    "notImplemented": "Not implemented"
+    "numberDescriptionsMaker": {
+      "minLabel": "Min",
+      "maxLabel": "Max"
+    },
+    "typeChooserModal": {
+      "title": "Make up name and choose type",
+      "nameLabel": "Your label",
+      "typeLabel": "Choose Type",
+      "okText": "Create",
+      "cancelText": "Cancel"
+    }
+  },
+  "serializePage": {
+    "nav": "Serializer",
+    "format": {
+      "json": "JSON"
+    },
+    "formatLabel": "Format",
+    "upload": {
+      "description": "You can upload new random descriptions from file",
+      "fileLabel": "Upload file",
+      "successLog": "Uploading file with name \"{{name}}\" has been completed",
+      "errorLog": "Uploading file with name \"{{name}}\" was stopped by error",
+      "seeResult": "See result"
+    }
+  },
+  "RandomDescriptionTypes": {
+    "enum": "Enum",
+    "number": "Number",
+    "object": "Named enum"
+  },
+  "404ErrorPage": {
+    "error": {
+      "name": "Error 404",
+      "message": "Page isn't found"
+    },
+    "previousPageLink": "Previous Page",
+    "homePageLink": "Home Page"
+  },
+  "notImplemented": "Not implemented"
 }
