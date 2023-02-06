@@ -13,6 +13,14 @@ import {
   ObjectRandomDescription,
   RandomDescriptionTypes,
 } from "../types";
+import { EnumInput } from "../core/Enum/components/input";
+import { NumericInput } from "../core/Numeric/components/input";
+
+const ROOT_TYPES = [
+  RandomDescriptionTypes.OBJECT,
+  RandomDescriptionTypes.ENUMERAL,
+  RandomDescriptionTypes.NUMBER,
+];
 
 type RD =
   | Omit<ObjectRandomDescription, "label">
@@ -71,6 +79,7 @@ const RandomMaker: FC = () => {
     register,
     formState: { errors },
     watch,
+    setValue,
   } = methods;
 
   useEffect(() => {
@@ -93,6 +102,8 @@ const RandomMaker: FC = () => {
     },
     [itemToSave]
   );
+
+  const rootType = watch("root.type");
 
   const onSubmit = async ({ name, root }: any) => {
     try {
@@ -123,8 +134,49 @@ const RandomMaker: FC = () => {
           <Form.Label>{nameLabel}</Form.Label>
           <Form.Control type="text" {...register("name", { required: true })} />
         </Form.Group>
+        <Form.Select
+          className="mb-3"
+          {...register("root.type", {
+            required: true,
+            onChange: (e) => {
+              const type = e.target.value as RandomDescriptionTypes;
+
+              if (type === RandomDescriptionTypes.ENUMERAL) {
+                setValue("root", {
+                  type,
+                  enum: [],
+                });
+              } else if (type === RandomDescriptionTypes.NUMBER) {
+                setValue("root", {
+                  type,
+                  min: 0,
+                  max: 100,
+                });
+              } else if (type === RandomDescriptionTypes.OBJECT) {
+                setValue("root", {
+                  type,
+                  object: [],
+                });
+              }
+            },
+          })}
+        >
+          {ROOT_TYPES.map((key) => (
+            <option value={key} key={key}>
+              {t(`RandomDescriptionTypes.${key}`) as string}
+            </option>
+          ))}
+        </Form.Select>
         <Form onSubmit={methods.handleSubmit(onSubmit)}>
-          <ObjectInput forUseFormName="root" />
+          {rootType === RandomDescriptionTypes.OBJECT && (
+            <ObjectInput forUseFormName="root" />
+          )}
+          {rootType === RandomDescriptionTypes.ENUMERAL && (
+            <EnumInput forUseFormName="root" />
+          )}
+          {rootType === RandomDescriptionTypes.NUMBER && (
+            <NumericInput forUseFormName="root" />
+          )}
           <br />
           <Button className="mt-2" type="submit">
             {okText}
