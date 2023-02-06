@@ -1,87 +1,101 @@
 {
-    "homePage": {
-        "nav": "Головна",
-        "loadingData": "Грузимо дані та вас своїм нудним текстом...",
-        "nothing": "Нічого ще не створено!"
+  "common": {
+    "nothingYet": "Ще пусто...",
+    "delete": "Видалити"
+  },
+  "homePage": {
+    "nav": "Головна",
+    "loadingData": "Грузимо дані та вас своїм нудним текстом...",
+    "nothing": "Нічого ще не створено!"
+  },
+  "randomsMakerPage": {
+    "nav": "Створювач",
+    "errors": {
+      "shouldFillAllFields": "Ви маєте заповнити всі поля)"
     },
-    "randomsMakerPage": {
-        "nav": "Створювач",
-        "subpage": {
-            "concreteRandom": {
-                "updateValues": "Туфта - чаклуй знов!",
-                "remove": "Видалити",
-                "removeModal": {
-                    "question": "Ви бажаєте видалити цей рандомізатор. Ви впевнені?",
-                    "title": "Видалити {{name}}",
-                    "okText": "Так",
-                    "cancelText": "Ні"
-                }
-            }
-        },
-        "form": {
-            "name": "Ім'я рандомізатору",
-            "okText": "Створити",
-            "tipsBeforeCreate": "Не забудьте додати свої генератори рандомних значень нижче"
-        },
-        "removeDescriptionForm": {
-            "title": "Видалити {{name}}",
-            "question": "Ви бажаєте видалити цей генератор рандому. Ви впевнені?",
-            "cancelText": "Ні",
-            "okText": "Так"
-        },
-        "valueDescriptionsMaker": {
-            "adderModal": {
-                "title": "Запишіть значення у список",
-                "valueLabel": "Ваше значення",
-                "okText": "Додати",
-                "cancelText": "Передумати"
-            },
-            "changerModal": {
-                "title": "Змінити чи видалити значення",
-                "valueLabel": "Ваше значення",
-                "okText": "Змінити",
-                "cancelText": "Передумати",
-                "removeText": "Видалити"
-            }
-        },
-        "numberDescriptionsMaker": {
-            "minLabel": "Мінімум",
-            "maxLabel": "Максимум"
-        },
-        "typeChooserModal": {
-            "title": "Придумайте назву та оберіть тип",
-            "nameLabel": "Назва для поля",
-            "typeLabel": "Оберіть тип",
-            "okText": "Створити",
-            "cancelText": "Відміна"
+    "object": {
+      "addItem": "Додати пункт до іменованого списку"
+    },
+    "enum": {
+      "addItem": "Додати пункт до списку",
+      "newItem": "Значення нового пункту"
+    },
+    "subpage": {
+      "concreteRandom": {
+        "updateValues": "Туфта - чаклуй знов!",
+        "remove": "Видалити",
+        "removeModal": {
+          "question": "Ви бажаєте видалити цей рандомізатор. Ви впевнені?",
+          "title": "Видалити {{name}}",
+          "okText": "Так",
+          "cancelText": "Ні"
         }
+      }
     },
-    "serializePage": {
-        "nav": "Серіалізація",
-        "format": {
-            "json": "JSON"
-        },
-        "formatLabel": "Формат",
-        "upload": {
-            "description": "Ви можете загрузити в свій рандомайзер нові описи рандомів",
-            "fileLabel": "Файл для підгрузки",
-            "successLog": "Підгрузка даних з файлу \"{{name}}\" була успішно завершена",
-            "errorLog": "Загрузка файлу була завершена з помилкою",
-            "seeResult": "Дивитися результат"
-        }
+    "form": {
+      "name": "Ім'я рандомізатору",
+      "okText": "Створити",
+      "tipsBeforeCreate": "Не забудьте додати свої генератори рандомних значень нижче"
     },
-    "RandomDescriptionTypes": {
-        "enum": "Список",
-        "number": "Числовой",
-        "key-values": "Ключ-Значення"
+    "removeDescriptionForm": {
+      "title": "Видалити {{name}}",
+      "question": "Ви бажаєте видалити цей генератор рандому. Ви впевнені?",
+      "cancelText": "Ні",
+      "okText": "Так"
     },
-    "404ErrorPage": {
-        "error": {
-            "name": "Помилка 404",
-            "message": "Сторінка, яку ви шукаєте, не знайдена"
-        },
-        "previousPageLink": "На попередню сторінку",
-        "homePageLink": "На головну"
+    "valueDescriptionsMaker": {
+      "adderModal": {
+        "title": "Запишіть значення у список",
+        "valueLabel": "Ваше значення",
+        "okText": "Додати",
+        "cancelText": "Передумати"
+      },
+      "changerModal": {
+        "title": "Змінити чи видалити значення",
+        "valueLabel": "Ваше значення",
+        "okText": "Змінити",
+        "cancelText": "Передумати",
+        "removeText": "Видалити"
+      }
     },
-    "notImplemented": "Ми дуже хотіли, щоб ви дізналися про цю можливість! Але це ще у розробці - чекайте)"
+    "numberDescriptionsMaker": {
+      "minLabel": "Мінімум",
+      "maxLabel": "Максимум"
+    },
+    "typeChooserModal": {
+      "title": "Придумайте назву та оберіть тип",
+      "nameLabel": "Назва для поля",
+      "typeLabel": "Оберіть тип",
+      "okText": "Створити",
+      "cancelText": "Відміна"
+    }
+  },
+  "serializePage": {
+    "nav": "Серіалізація",
+    "format": {
+      "json": "JSON"
+    },
+    "formatLabel": "Формат",
+    "upload": {
+      "description": "Ви можете загрузити в свій рандомайзер нові описи рандомів",
+      "fileLabel": "Файл для підгрузки",
+      "successLog": "Підгрузка даних з файлу \"{{name}}\" була успішно завершена",
+      "errorLog": "Загрузка файлу була завершена з помилкою",
+      "seeResult": "Дивитися результат"
+    }
+  },
+  "RandomDescriptionTypes": {
+    "enum": "Список",
+    "number": "Числовой",
+    "object": "Іменований список"
+  },
+  "404ErrorPage": {
+    "error": {
+      "name": "Помилка 404",
+      "message": "Сторінка, яку ви шукаєте, не знайдена"
+    },
+    "previousPageLink": "На попередню сторінку",
+    "homePageLink": "На головну"
+  },
+  "notImplemented": "Ми дуже хотіли, щоб ви дізналися про цю можливість! Але це ще у розробці - чекайте)"
 }

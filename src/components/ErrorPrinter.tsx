@@ -9,7 +9,9 @@ const ErrorPrinter: FC<Props> = ({ error }) => {
     return null;
   }
 
-  return <h3 className="text-light bg-danger">{error}</h3>;
+  return (
+    <h3 className="text-light bg-danger p-2 text-center rounded">{error}</h3>
+  );
 };
 
 export default ErrorPrinter;
