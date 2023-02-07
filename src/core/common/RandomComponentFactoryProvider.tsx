@@ -3,6 +3,9 @@ import { RandomDescriptionTypes } from "../../types";
 import { EnumInput } from "../Enum/components/input";
 import { EnumPreview } from "../Enum/components/preview";
 import { EnumView } from "../Enum/components/view";
+import { LinkInput } from "../Link/components/input";
+import { LinkPreview } from "../Link/components/preview";
+import { LinkView } from "../Link/components/view";
 import { NumericInput } from "../Numeric/components/input";
 import { NumericPreview } from "../Numeric/components/preview";
 import { NumericView } from "../Numeric/components/view";
@@ -21,16 +24,19 @@ const context = {
     [RandomDescriptionTypes.ENUMERAL]: EnumInput,
     [RandomDescriptionTypes.NUMBER]: NumericInput,
     [RandomDescriptionTypes.OBJECT]: ObjectInput,
+    [RandomDescriptionTypes.LINK]: LinkInput,
   },
   Preview: {
     [RandomDescriptionTypes.ENUMERAL]: EnumPreview,
     [RandomDescriptionTypes.NUMBER]: NumericPreview,
     [RandomDescriptionTypes.OBJECT]: ObjectPreview,
+    [RandomDescriptionTypes.LINK]: LinkPreview,
   },
   View: {
     [RandomDescriptionTypes.ENUMERAL]: EnumView,
     [RandomDescriptionTypes.NUMBER]: NumericView,
     [RandomDescriptionTypes.OBJECT]: ObjectView,
+    [RandomDescriptionTypes.LINK]: LinkView,
   },
 };
 

@@ -5,3 +5,4 @@ interface BaseInputProps {
 export interface NumericInputProps extends BaseInputProps {}
 export interface EnumInputProps extends BaseInputProps {}
 export interface ObjectInputProps extends BaseInputProps {}
+export interface LinkInputProps extends BaseInputProps {}

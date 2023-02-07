@@ -17,6 +17,7 @@ import { NumericView } from "../core/Numeric/components/view";
 import { ObjectView } from "../core/Object/components/view";
 import {
   EnumViewProps,
+  LinkViewProps,
   NumericViewProps,
   ObjectViewProps,
 } from "../core/types";
@@ -26,7 +27,7 @@ import { RandomDescription, RandomDescriptionTypes } from "../types";
 const prepareRandomDescription = (
   r: RandomDescription,
   computing: boolean
-): ObjectViewProps | EnumViewProps | NumericViewProps => {
+): ObjectViewProps | EnumViewProps | NumericViewProps | LinkViewProps => {
   if (r.type === RandomDescriptionTypes.ENUMERAL) {
     return {
       enums: r.enum,
@@ -38,6 +39,13 @@ const prepareRandomDescription = (
     return {
       min: r.min,
       max: r.max,
+      computing,
+    };
+  }
+
+  if (r.type === RandomDescriptionTypes.LINK) {
+    return {
+      linkId: r.linkId,
       computing,
     };
   }

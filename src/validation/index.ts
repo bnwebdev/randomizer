@@ -1,6 +1,7 @@
 import Joi from "joi";
 import {
   EnumRandomDescription,
+  LinkRandomDescription,
   NumberRandomDescription,
   ObjectRandomDescription,
   RandomDescriptionTypes,
@@ -29,6 +30,17 @@ export const enumeralDescriptionValidationSchema = Joi.object<
   enum: Joi.array().min(1).items(Joi.string()).required(),
 });
 
+export const linkDescriptionValidationSchema = Joi.object<
+  LinkRandomDescription,
+  true
+>({
+  type: Joi.string<RandomDescriptionTypes.LINK>()
+    .allow(RandomDescriptionTypes.LINK)
+    .only()
+    .required(),
+  linkId: Joi.string().min(1).required(),
+});
+
 const objectDescriptionValidationSchema = Joi.object<
   Omit<ObjectRandomDescription, "label">,
   true
@@ -44,7 +56,8 @@ const objectDescriptionValidationSchema = Joi.object<
       Joi.alternatives().try(
         Joi.link("#objectType"),
         numberDescriptionValidationSchema,
-        enumeralDescriptionValidationSchema
+        enumeralDescriptionValidationSchema,
+        linkDescriptionValidationSchema
       )
     )
     .required(),

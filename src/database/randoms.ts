@@ -8,13 +8,28 @@ export interface Random {
   randomDescriptions: RandomDescription[];
 }
 
+export enum RandomLinkStatus {
+  DRAFT,
+  COMPLETED,
+}
+export interface RandomLink {
+  id: string;
+  creatorDescriptionId: number;
+  descriptionId: number;
+  createdAt: number;
+  status: RandomLinkStatus;
+}
+
 export class RandomDexie extends Dexie {
   randoms!: Table<Random>;
+  randomLinks!: Table<RandomLink>;
 
   constructor() {
     super("j-randoms-db");
-    this.version(1).stores({
+    this.version(3).stores({
       randoms: "++id, name, *randomDescriptions", // Primary key and indexed props
+      randomLinks:
+        "++id, creatorDescriptionId, descriptionId, createdAt, status",
     });
   }
 }
