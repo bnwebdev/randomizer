@@ -6,6 +6,7 @@ import {
   LinkViewProps,
   NumericViewProps,
   ObjectViewProps,
+  RandomRepeatRandomsViewProps,
 } from "../types";
 
 type Props =
@@ -20,7 +21,10 @@ type Props =
     } & NumericViewProps)
   | ({
       type: RandomDescriptionTypes.OBJECT;
-    } & ObjectViewProps);
+    } & ObjectViewProps)
+  | ({
+      type: RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS;
+    } & RandomRepeatRandomsViewProps);
 
 export const RootView: FC<Props> = ({ type, ...props }) => {
   const { View } = useContext(RandomComponentFactoryContext);

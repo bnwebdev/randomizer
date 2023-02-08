@@ -6,6 +6,7 @@ import {
   LinkInputProps,
   NumericInputProps,
   ObjectInputProps,
+  RandomRepeatRandomsInputProps,
 } from "../types";
 
 type Props =
@@ -20,7 +21,10 @@ type Props =
     } & NumericInputProps)
   | ({
       type: RandomDescriptionTypes.OBJECT;
-    } & ObjectInputProps);
+    } & ObjectInputProps)
+  | ({
+      type: RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS;
+    } & RandomRepeatRandomsInputProps);
 
 export const RootInput: FC<Props> = ({ type, ...props }) => {
   const { Input } = useContext(RandomComponentFactoryContext);
