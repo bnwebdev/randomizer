@@ -18,3 +18,7 @@ export interface ObjectPreviewProps extends BasePreviewProps {
     }
   >;
 }
+
+export interface LinkPreviewProps extends BasePreviewProps {
+  linkId: string;
+}

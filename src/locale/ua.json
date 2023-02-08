@@ -87,7 +87,8 @@
   "RandomDescriptionTypes": {
     "enum": "Список",
     "number": "Числовой",
-    "object": "Іменований список"
+    "object": "Іменований список",
+    "link": "Посилання"
   },
   "404ErrorPage": {
     "error": {
