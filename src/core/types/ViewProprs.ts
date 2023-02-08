@@ -21,7 +21,22 @@ export interface ObjectViewProps extends BaseViewProps {
     string,
     {
       type: RandomDescriptionTypes;
-      props: NumericViewProps | EnumViewProps | ObjectViewProps | LinkViewProps;
+      props: RandomViewProps;
     }
   >;
 }
+
+export interface RandomRepeatRandomsViewProps extends BaseViewProps {
+  repeatCount: NumericViewProps;
+  random: {
+    type: RandomDescriptionTypes;
+    props: RandomViewProps;
+  };
+}
+
+export type RandomViewProps =
+  | NumericViewProps
+  | EnumViewProps
+  | ObjectViewProps
+  | LinkViewProps
+  | RandomRepeatRandomsViewProps;

@@ -1,15 +1,10 @@
 import { RandomDescription, RandomDescriptionTypes } from "../../types";
-import {
-  EnumViewProps,
-  LinkViewProps,
-  NumericViewProps,
-  ObjectViewProps,
-} from "../types";
+import { NumericViewProps, RandomViewProps } from "../types";
 
 export const prepareRandomDescriptionViewProps = (
   r: RandomDescription,
   computing: boolean
-): ObjectViewProps | EnumViewProps | NumericViewProps | LinkViewProps => {
+): RandomViewProps => {
   if (r.type === RandomDescriptionTypes.ENUMERAL) {
     return {
       enums: r.enum,
@@ -29,6 +24,20 @@ export const prepareRandomDescriptionViewProps = (
     return {
       linkId: r.linkId,
       computing,
+    };
+  }
+
+  if (r.type === RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS) {
+    return {
+      computing,
+      random: {
+        type: r.random.type,
+        props: prepareRandomDescriptionViewProps(r.random, computing),
+      },
+      repeatCount: prepareRandomDescriptionViewProps(
+        r.repeatCount,
+        computing
+      ) as NumericViewProps,
     };
   }
 

@@ -7,10 +7,8 @@ import { randomDescriptionValidationSchema } from "../validation";
 import { Random, RandomDexie, RandomLinkStatus } from "../database";
 import { useDexie, useTranslation } from "../hooks";
 import {
-  EnumRandomDescription,
   LinkRandomDescription,
   NumberRandomDescription,
-  ObjectRandomDescription,
   RandomDescription,
   RandomDescriptionTypes,
 } from "../types";
@@ -20,13 +18,10 @@ const ROOT_TYPES = [
   RandomDescriptionTypes.OBJECT,
   RandomDescriptionTypes.ENUMERAL,
   RandomDescriptionTypes.NUMBER,
+  RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS,
 ];
 
-type RD =
-  | Omit<ObjectRandomDescription, "label">
-  | Omit<EnumRandomDescription, "label">
-  | Omit<NumberRandomDescription, "label">
-  | Omit<LinkRandomDescription, "label">;
+type RD = RandomDescription;
 
 const prepareRandomDescription = (
   root: {
@@ -52,6 +47,16 @@ const prepareRandomDescription = (
     return {
       type: root.type,
       linkId: root.linkId,
+    };
+  }
+
+  if (root.type === RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS) {
+    return {
+      type: root.type,
+      random: prepareRandomDescription(root.random),
+      repeatCount: prepareRandomDescription(
+        root.repeatCount
+      ) as NumberRandomDescription,
     };
   }
 
@@ -222,6 +227,21 @@ const RandomMaker: FC = () => {
                 setValue("root", {
                   type,
                   object: [],
+                });
+              } else if (
+                type === RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS
+              ) {
+                setValue("root", {
+                  type,
+                  random: {
+                    type: RandomDescriptionTypes.OBJECT,
+                    object: [],
+                  },
+                  repeatCount: {
+                    type: RandomDescriptionTypes.NUMBER,
+                    min: 1,
+                    max: 8,
+                  },
                 });
               }
             },

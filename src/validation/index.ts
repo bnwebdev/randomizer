@@ -5,6 +5,7 @@ import {
   NumberRandomDescription,
   ObjectRandomDescription,
   RandomDescriptionTypes,
+  RandomRepeatRandomsRandomDescription,
 } from "../types";
 
 export const numberDescriptionValidationSchema = Joi.object<
@@ -41,8 +42,8 @@ export const linkDescriptionValidationSchema = Joi.object<
   linkId: Joi.string().min(1).required(),
 });
 
-const objectDescriptionValidationSchema = Joi.object<
-  Omit<ObjectRandomDescription, "label">,
+let objectDescriptionValidationSchema = Joi.object<
+  ObjectRandomDescription,
   true
 >({
   type: Joi.string<RandomDescriptionTypes.OBJECT>()
@@ -55,6 +56,7 @@ const objectDescriptionValidationSchema = Joi.object<
       /.*/,
       Joi.alternatives().try(
         Joi.link("#objectType"),
+        Joi.link("#randomRepeatRandoms"),
         numberDescriptionValidationSchema,
         enumeralDescriptionValidationSchema,
         linkDescriptionValidationSchema
@@ -63,8 +65,34 @@ const objectDescriptionValidationSchema = Joi.object<
     .required(),
 }).id("objectType");
 
+let randomRepeatRandomsValidationSchema = Joi.object<
+  RandomRepeatRandomsRandomDescription,
+  true
+>({
+  type: Joi.string<RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS>()
+    .allow(RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS)
+    .only()
+    .required(),
+  random: Joi.alternatives().try(
+    Joi.link("#randomRepeatRandoms"),
+    numberDescriptionValidationSchema,
+    enumeralDescriptionValidationSchema,
+    linkDescriptionValidationSchema,
+    objectDescriptionValidationSchema
+  ),
+  repeatCount: numberDescriptionValidationSchema,
+}).id("randomRepeatRandoms");
+
+objectDescriptionValidationSchema = objectDescriptionValidationSchema.shared(
+  randomRepeatRandomsValidationSchema
+);
+
+randomRepeatRandomsValidationSchema =
+  randomRepeatRandomsValidationSchema.shared(objectDescriptionValidationSchema);
+
 export const randomDescriptionValidationSchema = Joi.alternatives().try(
   numberDescriptionValidationSchema,
   enumeralDescriptionValidationSchema,
-  objectDescriptionValidationSchema
+  objectDescriptionValidationSchema,
+  randomRepeatRandomsValidationSchema
 );
