@@ -87,7 +87,8 @@
   "RandomDescriptionTypes": {
     "enum": "Enum",
     "number": "Number",
-    "object": "Named enum"
+    "object": "Named enum",
+    "link": "Link"
   },
   "404ErrorPage": {
     "error": {

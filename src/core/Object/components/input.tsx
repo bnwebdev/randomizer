@@ -138,6 +138,12 @@ export const ObjectInput: FC<ObjectInputProps> = (props) => {
                     name,
                     props: { object: [] },
                   });
+                } else if (type === RandomDescriptionTypes.LINK) {
+                  append({
+                    type,
+                    name,
+                    props: {},
+                  });
                 } else {
                   throw new Error(`Unknown type`);
                 }

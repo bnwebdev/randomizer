@@ -2,6 +2,7 @@ export enum RandomDescriptionTypes {
   NUMBER = "number",
   ENUMERAL = "enum",
   OBJECT = "object",
+  LINK = "link",
 }
 
 export interface BaseRandomDescription {
@@ -24,7 +25,13 @@ export interface ObjectRandomDescription extends BaseRandomDescription {
   object: Record<string, RandomDescription>;
 }
 
+export interface LinkRandomDescription extends BaseRandomDescription {
+  type: RandomDescriptionTypes.LINK;
+  linkId: string;
+}
+
 export type RandomDescription =
   | EnumRandomDescription
   | NumberRandomDescription
-  | ObjectRandomDescription;
+  | ObjectRandomDescription
+  | LinkRandomDescription;

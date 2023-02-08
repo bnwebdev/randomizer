@@ -11,12 +11,17 @@ export interface NumericViewProps extends BaseViewProps {
 export interface EnumViewProps extends BaseViewProps {
   enums: string[];
 }
+
+export interface LinkViewProps extends BaseViewProps {
+  linkId: string;
+}
+
 export interface ObjectViewProps extends BaseViewProps {
   object: Record<
     string,
     {
       type: RandomDescriptionTypes;
-      props: NumericViewProps | EnumViewProps | ObjectViewProps;
+      props: NumericViewProps | EnumViewProps | ObjectViewProps | LinkViewProps;
     }
   >;
 }

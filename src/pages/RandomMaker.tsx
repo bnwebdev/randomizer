@@ -4,17 +4,17 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
 import { randomDescriptionValidationSchema } from "../validation";
-import { ObjectInput } from "../core/Object/components/input";
-import { Random } from "../database";
+import { Random, RandomDexie, RandomLinkStatus } from "../database";
 import { useDexie, useTranslation } from "../hooks";
 import {
   EnumRandomDescription,
+  LinkRandomDescription,
   NumberRandomDescription,
   ObjectRandomDescription,
+  RandomDescription,
   RandomDescriptionTypes,
 } from "../types";
-import { EnumInput } from "../core/Enum/components/input";
-import { NumericInput } from "../core/Numeric/components/input";
+import { RootInput } from "../core/Root/input";
 
 const ROOT_TYPES = [
   RandomDescriptionTypes.OBJECT,
@@ -25,10 +25,13 @@ const ROOT_TYPES = [
 type RD =
   | Omit<ObjectRandomDescription, "label">
   | Omit<EnumRandomDescription, "label">
-  | Omit<NumberRandomDescription, "label">;
+  | Omit<NumberRandomDescription, "label">
+  | Omit<LinkRandomDescription, "label">;
 
 const prepareRandomDescription = (
-  root: { type: RandomDescriptionTypes } & Record<string, any>
+  root: {
+    type: RandomDescriptionTypes;
+  } & Record<string, any>
 ): RD => {
   if (root.type === RandomDescriptionTypes.NUMBER) {
     return {
@@ -42,6 +45,13 @@ const prepareRandomDescription = (
     return {
       type: root.type,
       enum: root.enums.map(({ value }: { value: string }) => value),
+    };
+  }
+
+  if (root.type === RandomDescriptionTypes.LINK) {
+    return {
+      type: root.type,
+      linkId: root.linkId,
     };
   }
 
@@ -62,6 +72,42 @@ const prepareRandomDescription = (
     ),
   };
 };
+
+const findLinksRandomDescriptions = (
+  randomDescriptions: RandomDescription[]
+): LinkRandomDescription[] => {
+  const links: LinkRandomDescription[] = [];
+
+  randomDescriptions.forEach((description) => {
+    if (description.type === RandomDescriptionTypes.LINK) {
+      links.push(description);
+    } else if (description.type === RandomDescriptionTypes.OBJECT) {
+      const internalLinks = findLinksRandomDescriptions(
+        Object.values(description.object)
+      );
+      links.push(...internalLinks);
+    }
+  });
+
+  return links;
+};
+
+const getIsRightLink =
+  (db: RandomDexie) => async (linkDescription: LinkRandomDescription) => {
+    const link = await db.randomLinks.get(linkDescription.linkId);
+
+    if (!link) {
+      throw new Error(`Link wasn't created`);
+    }
+
+    if (link.status !== RandomLinkStatus.DRAFT) {
+      throw new Error(`LinkStatus isn't draft`);
+    }
+
+    if (link.descriptionId < 0) {
+      throw new Error(`Description wasn't choosed`);
+    }
+  };
 
 const RandomMaker: FC = () => {
   const navigate = useNavigate();
@@ -95,9 +141,29 @@ const RandomMaker: FC = () => {
         const item = itemToSave;
         setItemToSave(null);
 
-        await db.randoms.add(item);
+        await db.transaction(
+          "readwrite",
+          db.randomLinks,
+          db.randoms,
+          async () => {
+            const links = findLinksRandomDescriptions(item.randomDescriptions);
+            await Promise.all(links.map(getIsRightLink(db)));
 
-        navigate("/");
+            const id = (await db.randoms.add(item)) as number;
+
+            if (links.length) {
+              await db.randomLinks
+                .where(":id")
+                .anyOf(links.map(({ linkId }) => linkId))
+                .modify({
+                  creatorDescriptionId: id,
+                  status: RandomLinkStatus.COMPLETED,
+                });
+            }
+
+            navigate("/");
+          }
+        );
       }
     },
     [itemToSave]
@@ -110,7 +176,7 @@ const RandomMaker: FC = () => {
       setValidationError(undefined);
       const unlabeledRandomDescription = prepareRandomDescription(root);
       const randomDescription = { ...unlabeledRandomDescription };
-
+      console.log(randomDescription);
       await randomDescriptionValidationSchema.validateAsync(randomDescription);
 
       setItemToSave({ name, randomDescriptions: [randomDescription] });
@@ -168,15 +234,10 @@ const RandomMaker: FC = () => {
           ))}
         </Form.Select>
         <Form onSubmit={methods.handleSubmit(onSubmit)}>
-          {rootType === RandomDescriptionTypes.OBJECT && (
-            <ObjectInput forUseFormName="root" />
-          )}
-          {rootType === RandomDescriptionTypes.ENUMERAL && (
-            <EnumInput forUseFormName="root" />
-          )}
-          {rootType === RandomDescriptionTypes.NUMBER && (
-            <NumericInput forUseFormName="root" />
-          )}
+          <RootInput
+            type={rootType as RandomDescriptionTypes}
+            forUseFormName="root"
+          />
           <br />
           <Button className="mt-2" type="submit">
             {okText}

@@ -4,6 +4,9 @@ import {
   EnumInputProps,
   EnumPreviewProps,
   EnumViewProps,
+  LinkInputProps,
+  LinkPreviewProps,
+  LinkViewProps,
   NumericInputProps,
   NumericPreviewProps,
   NumericViewProps,
@@ -18,16 +21,19 @@ export type Context = {
     [RandomDescriptionTypes.ENUMERAL]: FC<EnumInputProps>;
     [RandomDescriptionTypes.NUMBER]: FC<NumericInputProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectInputProps>;
+    [RandomDescriptionTypes.LINK]: FC<LinkInputProps>;
   };
   Preview: {
     [RandomDescriptionTypes.ENUMERAL]: FC<EnumPreviewProps>;
     [RandomDescriptionTypes.NUMBER]: FC<NumericPreviewProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectPreviewProps>;
+    [RandomDescriptionTypes.LINK]: FC<LinkPreviewProps>;
   };
   View: {
     [RandomDescriptionTypes.ENUMERAL]: FC<EnumViewProps>;
     [RandomDescriptionTypes.NUMBER]: FC<NumericViewProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectViewProps>;
+    [RandomDescriptionTypes.LINK]: FC<LinkViewProps>;
   };
 };
 
@@ -45,15 +51,18 @@ export const RandomComponentFactoryContext = createContext<Context>({
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
+    [RandomDescriptionTypes.LINK]: ShouldBeProvided,
   },
   Preview: {
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
+    [RandomDescriptionTypes.LINK]: ShouldBeProvided,
   },
   View: {
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
+    [RandomDescriptionTypes.LINK]: ShouldBeProvided,
   },
 });
