@@ -4,7 +4,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
 import { randomDescriptionValidationSchema } from "../validation";
-import { ObjectInput } from "../core/Object/components/input";
 import { Random, RandomDexie, RandomLinkStatus } from "../database";
 import { useDexie, useTranslation } from "../hooks";
 import {
@@ -15,8 +14,7 @@ import {
   RandomDescription,
   RandomDescriptionTypes,
 } from "../types";
-import { EnumInput } from "../core/Enum/components/input";
-import { NumericInput } from "../core/Numeric/components/input";
+import { RootInput } from "../core/Root/input";
 
 const ROOT_TYPES = [
   RandomDescriptionTypes.OBJECT,
@@ -236,15 +234,10 @@ const RandomMaker: FC = () => {
           ))}
         </Form.Select>
         <Form onSubmit={methods.handleSubmit(onSubmit)}>
-          {rootType === RandomDescriptionTypes.OBJECT && (
-            <ObjectInput forUseFormName="root" />
-          )}
-          {rootType === RandomDescriptionTypes.ENUMERAL && (
-            <EnumInput forUseFormName="root" />
-          )}
-          {rootType === RandomDescriptionTypes.NUMBER && (
-            <NumericInput forUseFormName="root" />
-          )}
+          <RootInput
+            type={rootType as RandomDescriptionTypes}
+            forUseFormName="root"
+          />
           <br />
           <Button className="mt-2" type="submit">
             {okText}

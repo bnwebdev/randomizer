@@ -12,54 +12,9 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import { ErrorPrinter } from "../components";
 import { COMPUTING_VALUE_TIME } from "../core/constants";
-import { EnumView } from "../core/Enum/components/view";
-import { NumericView } from "../core/Numeric/components/view";
-import { ObjectView } from "../core/Object/components/view";
-import {
-  EnumViewProps,
-  LinkViewProps,
-  NumericViewProps,
-  ObjectViewProps,
-} from "../core/types";
+import { RootView } from "../core/Root/view";
+import { prepareRandomDescriptionViewProps } from "../core/utils/prepareRandomDescriptionViewProps";
 import { useComputing, useDexie, useTranslation } from "../hooks";
-import { RandomDescription, RandomDescriptionTypes } from "../types";
-
-const prepareRandomDescription = (
-  r: RandomDescription,
-  computing: boolean
-): ObjectViewProps | EnumViewProps | NumericViewProps | LinkViewProps => {
-  if (r.type === RandomDescriptionTypes.ENUMERAL) {
-    return {
-      enums: r.enum,
-      computing,
-    };
-  }
-
-  if (r.type === RandomDescriptionTypes.NUMBER) {
-    return {
-      min: r.min,
-      max: r.max,
-      computing,
-    };
-  }
-
-  if (r.type === RandomDescriptionTypes.LINK) {
-    return {
-      linkId: r.linkId,
-      computing,
-    };
-  }
-
-  return {
-    object: Object.fromEntries(
-      Object.entries(r.object).map(([key, value]) => [
-        key,
-        { type: value.type, props: prepareRandomDescription(value, computing) },
-      ])
-    ),
-    computing,
-  };
-};
 
 const Random: FC = () => {
   const params = useParams();
@@ -79,24 +34,15 @@ const Random: FC = () => {
     () =>
       random?.randomDescriptions.map((randomDescription, idx) => (
         <ListGroup.Item key={idx}>
-          {randomDescription.type === RandomDescriptionTypes.ENUMERAL && (
-            <EnumView computing={computing} enums={randomDescription.enum} />
-          )}
-          {randomDescription.type === RandomDescriptionTypes.NUMBER && (
-            <NumericView
-              computing={computing}
-              min={randomDescription.min}
-              max={randomDescription.max}
-            />
-          )}
-          {randomDescription.type === RandomDescriptionTypes.OBJECT && (
-            <ObjectView
-              {...(prepareRandomDescription(
+          {
+            <RootView
+              type={randomDescription.type}
+              {...(prepareRandomDescriptionViewProps(
                 randomDescription,
                 computing
-              ) as ObjectViewProps)}
+              ) as any)}
             />
-          )}
+          }
         </ListGroup.Item>
       )),
     [random, computing]
