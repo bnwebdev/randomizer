@@ -144,6 +144,24 @@ export const ObjectInput: FC<ObjectInputProps> = (props) => {
                     name,
                     props: {},
                   });
+                } else if (
+                  type === RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS
+                ) {
+                  append({
+                    type,
+                    name,
+                    props: {
+                      random: {
+                        type: RandomDescriptionTypes.OBJECT,
+                        object: [],
+                      },
+                      repeatCount: {
+                        type: RandomDescriptionTypes.NUMBER,
+                        min: 1,
+                        max: 8,
+                      },
+                    },
+                  });
                 } else {
                   throw new Error(`Unknown type`);
                 }

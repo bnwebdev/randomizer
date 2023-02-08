@@ -14,7 +14,7 @@ export interface ObjectPreviewProps extends BasePreviewProps {
     string,
     {
       type: RandomDescriptionTypes;
-      props: NumericPreviewProps | EnumPreviewProps | ObjectPreviewProps;
+      props: RandomPreviewProps;
     }
   >;
 }
@@ -22,3 +22,18 @@ export interface ObjectPreviewProps extends BasePreviewProps {
 export interface LinkPreviewProps extends BasePreviewProps {
   linkId: string;
 }
+
+export interface RandomRepeatRandomsPreviewProps extends BasePreviewProps {
+  repeatCount: NumericPreviewProps;
+  random: {
+    type: RandomDescriptionTypes;
+    props: RandomPreviewProps;
+  };
+}
+
+export type RandomPreviewProps =
+  | NumericPreviewProps
+  | EnumPreviewProps
+  | ObjectPreviewProps
+  | LinkPreviewProps
+  | RandomRepeatRandomsPreviewProps;

@@ -88,7 +88,8 @@
     "enum": "Enum",
     "number": "Number",
     "object": "Named enum",
-    "link": "Link"
+    "link": "Link",
+    "randomRepeatRandoms": "Random repeater"
   },
   "404ErrorPage": {
     "error": {

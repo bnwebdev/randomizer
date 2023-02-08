@@ -13,6 +13,9 @@ import {
   ObjectInputProps,
   ObjectPreviewProps,
   ObjectViewProps,
+  RandomRepeatRandomsInputProps,
+  RandomRepeatRandomsViewProps,
+  RandomRepeatRandomsPreviewProps,
 } from "../types";
 
 export type Context = {
@@ -22,18 +25,21 @@ export type Context = {
     [RandomDescriptionTypes.NUMBER]: FC<NumericInputProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectInputProps>;
     [RandomDescriptionTypes.LINK]: FC<LinkInputProps>;
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: FC<RandomRepeatRandomsInputProps>;
   };
   Preview: {
     [RandomDescriptionTypes.ENUMERAL]: FC<EnumPreviewProps>;
     [RandomDescriptionTypes.NUMBER]: FC<NumericPreviewProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectPreviewProps>;
     [RandomDescriptionTypes.LINK]: FC<LinkPreviewProps>;
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: FC<RandomRepeatRandomsPreviewProps>;
   };
   View: {
     [RandomDescriptionTypes.ENUMERAL]: FC<EnumViewProps>;
     [RandomDescriptionTypes.NUMBER]: FC<NumericViewProps>;
     [RandomDescriptionTypes.OBJECT]: FC<ObjectViewProps>;
     [RandomDescriptionTypes.LINK]: FC<LinkViewProps>;
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: FC<RandomRepeatRandomsViewProps>;
   };
 };
 
@@ -46,23 +52,28 @@ export const RandomComponentFactoryContext = createContext<Context>({
     RandomDescriptionTypes.ENUMERAL,
     RandomDescriptionTypes.NUMBER,
     RandomDescriptionTypes.OBJECT,
+    RandomDescriptionTypes.LINK,
+    RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS,
   ],
   Input: {
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
     [RandomDescriptionTypes.LINK]: ShouldBeProvided,
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: ShouldBeProvided,
   },
   Preview: {
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
     [RandomDescriptionTypes.LINK]: ShouldBeProvided,
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: ShouldBeProvided,
   },
   View: {
     [RandomDescriptionTypes.ENUMERAL]: ShouldBeProvided,
     [RandomDescriptionTypes.NUMBER]: ShouldBeProvided,
     [RandomDescriptionTypes.OBJECT]: ShouldBeProvided,
     [RandomDescriptionTypes.LINK]: ShouldBeProvided,
+    [RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS]: ShouldBeProvided,
   },
 });

@@ -3,6 +3,7 @@ export enum RandomDescriptionTypes {
   ENUMERAL = "enum",
   OBJECT = "object",
   LINK = "link",
+  RANDOM_REPEAT_RANDOMS = "randomRepeatRandoms",
 }
 
 export interface BaseRandomDescription {
@@ -30,8 +31,16 @@ export interface LinkRandomDescription extends BaseRandomDescription {
   linkId: string;
 }
 
+export interface RandomRepeatRandomsRandomDescription
+  extends BaseRandomDescription {
+  type: RandomDescriptionTypes.RANDOM_REPEAT_RANDOMS;
+  repeatCount: NumberRandomDescription;
+  random: RandomDescription;
+}
+
 export type RandomDescription =
   | EnumRandomDescription
   | NumberRandomDescription
   | ObjectRandomDescription
-  | LinkRandomDescription;
+  | LinkRandomDescription
+  | RandomRepeatRandomsRandomDescription;
